@@ -55,6 +55,11 @@ export default {
           },
         },
       },
+      colors: {
+        darkModePurple: {
+          DEFAULT: '#9933ff ', // Your preferred shade of purple
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
