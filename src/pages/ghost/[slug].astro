@@ -3,12 +3,22 @@ import PageLayout from "@layouts/PageLayout.astro"
 import TopLayout from "@layouts/TopLayout.astro"
 import PostPreviewList from "src/components/PostPreviewList.astro";
 import HeroContent from "src/components/HeroContent.astro";
-import { getPosts, getSettings, invariant } from "@matthiesenxyz/astro-ghostcms/api";
+import { getPosts, getSettings, getAllPages, getAllPosts, invariant } from "@matthiesenxyz/astro-ghostcms/api";
 const { posts } = await getPosts();
 const settings = await getSettings();
 invariant(settings, 'Settings not found');
 const title = settings.title;
 const description = settings.description;
+
+export async function getStaticPaths() {
+  const [posts, pages, settings] = await Promise.all([getAllPosts(), await getAllPages(), await getSettings()]);
+  const allPosts = [...posts, ...pages];
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, posts, settings },
+  }));
+}
+
 ---
 
 <PageLayout

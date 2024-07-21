@@ -27,6 +27,6 @@ export default defineConfig({
   }), mdx(), sitemap(), solidJs(), tailwind({
     applyBaseStyles: false
   })],
-  output: "hybrid",
+//  output: "hybrid",
 //  adapter: cloudflare()
 });
