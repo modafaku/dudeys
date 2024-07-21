@@ -18,7 +18,7 @@ export default defineConfig({
       },
       disableDefault404: true,
       enableRSSFeed: true,
-      enableOGImages:true,
+      enableOGImages:false,
       verbose: false,
       Integrations: {
         robotsTxt: {
