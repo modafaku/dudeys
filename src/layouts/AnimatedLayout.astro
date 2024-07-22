@@ -1,0 +1,56 @@
+<!-- src/layouts/AnimatedLayout.astro -->
+---
+import "@styles/global.css"
+import BaseHead from "@components/BaseHead.astro"
+import Header from "@components/Header.astro"
+import Footer from "@components/Footer.astro"
+import Drawer from "@components/Drawer.astro"
+const { title, description } = Astro.props
+import { SITE } from "@consts"
+import TwinklingStars from '@components/TwinklingStars.astro';
+import MeteorShower from '@components/MeteorShower.astro';
+import Container from "@components/Container.astro"
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{Astro.props.title}</title>
+    <meta name="description" content={Astro.props.description}>
+    <link rel="stylesheet" href="/styles/global.css">
+    <style>
+      /* Any additional styles specific to AnimatedLayout */
+    </style>
+  </head>
+  <body>
+    <!-- Light Mode: Particles -->
+    <div class='absolute inset-0 block dark:hidden'>
+      <div id='particles1' class='fixed inset-0'></div>
+      <div id='particles2' class='fixed inset-0'></div>
+      <div id='particles3' class='fixed inset-0'></div>
+    </div>
+
+    <!-- Dark Theme: Stars -->
+    <div class='absolute inset-0 bg-black hidden dark:block'>
+      <div id='stars1' class='fixed inset-0'></div>
+      <div id='stars2' class='fixed inset-0'></div>
+      <div id='stars3' class='fixed inset-0'></div>
+    </div>
+
+    <!-- Dark Theme: Twinkling Stars / Metors -->
+    <div id="galaxy" class="fixed inset-0">
+      <div class="hidden dark:block">
+        <TwinklingStars/>
+        <MeteorShower/>
+      </div>
+    </div>
+
+    <script is:inline src="/js/bg.js"></script>
+
+    <!-- Main Content Slot -->
+    <div class="main-content">
+      <slot />
+    </div>
+  </body>
+</html>

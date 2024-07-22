@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import solidJs from "@astrojs/solid-js";
 import matthiesenxyzghostcms from "@matthiesenxyz/astro-ghostcms";
 
-//import cloudflare from "@astrojs/cloudflare";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,8 +18,8 @@ export default defineConfig({
     },
     disableDefault404: true,
     enableRSSFeed: true,
-    enableOGImages: false,
-    verbose: false,
+    enableOGImages: true,
+    verbose: true,
     Integrations: {
       robotsTxt: {},
       sitemap: {}
@@ -27,6 +27,6 @@ export default defineConfig({
   }), mdx(), sitemap(), solidJs(), tailwind({
     applyBaseStyles: false
   })],
-//  output: "hybrid",
-//  adapter: cloudflare()
+  output: "server",
+  adapter: cloudflare()
 });
