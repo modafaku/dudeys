@@ -20,6 +20,7 @@ type Props = CollectionEntry<"legal">;
 const doc = Astro.props
 const { title, date } = doc.data
 const { Content } = await doc.render();
+export const prerender = true;
 
 ---
 

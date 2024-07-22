@@ -1,7 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro"
-import TopLayout from "@layouts/TopLayout.astro"
-import AnimatedLayout from "@layouts/AnimatedLayout.astro";
+import GhostLayout from "@layouts/GhostLayout.astro"
 import PostPreviewList from "src/components/PostPreviewList.astro";
 import HeroContent from "src/components/HeroContent.astro";
 import { getPosts, getSettings, getAllPages, getAllPosts, invariant } from "@matthiesenxyz/astro-ghostcms/api";
@@ -19,5 +18,26 @@ export async function getStaticPaths() {
     props: { post, posts, settings },
   }));
 }
+export const prerender = true;
 
 ---
+
+<PageLayout>
+  <GhostLayout>
+    <HeroContent
+      mainTitle={settings.title}
+      description={settings.description}
+      featureImg={settings?.cover_image || ""}
+      settings={settings}
+      addClass={"hero-cta bg-gradient"}
+    />
+
+    <main id="site-main" class="site-main outer">
+      <div class="inner posts">
+        <PostPreviewList posts={posts} settings={settings} isHome={true} />
+      </div>
+    </main>
+  
+  
+  </GhostLayout>
+</PageLayout>

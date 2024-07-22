@@ -18,7 +18,7 @@ export default defineConfig({
     },
     disableDefault404: true,
     enableRSSFeed: true,
-    enableOGImages: true,
+    enableOGImages: false,
     verbose: true,
     Integrations: {
       robotsTxt: {},
@@ -27,6 +27,6 @@ export default defineConfig({
   }), mdx(), sitemap(), solidJs(), tailwind({
     applyBaseStyles: false
   })],
-  output: "server",
-  adapter: cloudflare()
+//  output: "server",
+//  adapter: cloudflare()
 });
