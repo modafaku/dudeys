@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { passthroughImageService, defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -9,6 +9,9 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    service: passthroughImageService(),
+  },
   site: "https://modafaku.com",
   integrations: [matthiesenxyzghostcms({
     ghostURL: "https://ghost.modafaku.com",
