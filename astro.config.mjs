@@ -7,20 +7,22 @@ import solidJs from "@astrojs/solid-js";
 import matthiesenxyzghostcms from "@matthiesenxyz/astro-ghostcms";
 import cloudflare from "@astrojs/cloudflare";
 import linkPreview from "astro-link-preview";
+//import satori from "satori-astro";
+import { imageService } from "@unpic/astro/service";
+import relativeLinks from "astro-relative-links";
 
-import satori from "satori-astro";
+import betterImageService from "astro-better-image-service";
 
 // https://astro.build/config
 export default defineConfig({
   image: {
-    service: passthroughImageService()
+    service: imageService()
   },
-  site: "https://modafaku.com",
-  integrations: [
-    linkPreview(), 
-//    preload(), 
-    matthiesenxyzghostcms({
-    ghostURL: "https://ghost.modafaku.com",
+  site: "https://modafaku.com/",
+  integrations: [linkPreview(),
+  //    preload(), 
+  matthiesenxyzghostcms({
+    ghostURL: "https://ghost.modafaku.com/",
     ThemeProvider: {
       disableThemeProvider: true,
       theme: "@matthiesenxyz/astro-ghostcms-theme-default"
@@ -33,9 +35,21 @@ export default defineConfig({
       robotsTxt: {},
       sitemap: {}
     }
-  }), mdx(), sitemap(), solidJs(), tailwind({
+  }), 
+  mdx(), 
+  sitemap(), 
+  solidJs(), 
+  tailwind({
     applyBaseStyles: false
-  }), satori()]
-  //  output: "server",
-  //  adapter: cloudflare()
+  }), 
+//  satori(), 
+  relativeLinks(), 
+  betterImageService()],
+//    output: "hybrid",
+//    vite: {
+//      ssr: {
+//        external: true,
+//      },
+//    },
+//    adapter: cloudflare()
 });
