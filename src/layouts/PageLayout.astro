@@ -1,4 +1,5 @@
 ---
+
 import "@styles/global.css"
 import BaseHead from "@components/BaseHead.astro"
 import Header from "@components/Header.astro"
@@ -6,6 +7,31 @@ import Footer from "@components/Footer.astro"
 import Drawer from "@components/Drawer.astro"
 const { title, description } = Astro.props
 import { SITE } from "@consts"
+
+import type { LaunchOptions } from 'playwright'
+
+export interface Options {
+  /**
+   * Whether to log stats
+   * @default true
+   */
+  logStats?: boolean
+  /**
+   * proxy settings
+   */
+  proxy?: LaunchOptions['proxy']
+  /**
+   * preview image format
+   * @default 'jpg'
+   */
+  previewImageFormat?: 'png' | 'jpg'
+  /**
+   * whether to allow image previews on mobile devices
+   * @default false
+   */
+  enableOnMobile?: boolean
+}
+const { url, site } = Astro;
 ---
 
 <!doctype html>

@@ -4,6 +4,9 @@ import GhostLayout from "@layouts/GhostLayout.astro"
 import PostPreviewList from "src/components/PostPreviewList.astro";
 import HeroContent from "src/components/HeroContent.astro";
 import { getPosts, getSettings, invariant } from "@matthiesenxyz/astro-ghostcms/api";
+
+
+
 const { posts } = await getPosts();
 const settings = await getSettings();
 invariant(settings, 'Settings not found');
